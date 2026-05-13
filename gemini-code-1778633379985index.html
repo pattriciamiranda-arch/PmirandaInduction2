@@ -1,0 +1,287 @@
+<!doctype html>
+<html lang="en" class="h-full">
+ <head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Teacher Portfolio | Pattricia Miranda</title>
+  <script src="https://cdn.tailwindcss.com/3.4.17"></script>
+  <script src="https://cdn.jsdelivr.net/npm/lucide@0.263.0/dist/umd/lucide.min.js"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+    :root { --bg-cream: #F9F8F3; --forest-green: #3D5A42; --sage-green: #6B8E6F; --light-sage: #DCE4DA; }
+    body { font-family: 'Inter', sans-serif; background-color: var(--bg-cream); color: var(--forest-green); margin: 0; scroll-behavior: smooth; }
+    .font-serif { font-family: 'Playfair Display', serif; }
+    nav { background-color: rgba(255, 255, 255, 0.9); backdrop-filter: blur(10px); z-index: 1000; position: fixed; top: 0; width: 100%; border-bottom: 1px solid #eee; }
+    
+    .page { display: none; }
+    .page.active { display: block !important; animation: fadeIn 0.5s ease-out; }
+    @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+    
+    .content-card { background: white; border-radius: 12px; border: 1px solid rgba(0,0,0,0.05); box-shadow: 0 4px 20px rgba(0, 0, 0, 0.03); }
+    .pill { background: white; border: 1px solid #E5E7EB; padding: 10px 18px; border-radius: 8px; display: flex; align-items: center; gap: 8px; font-size: 0.85rem; font-weight: 500; }
+    
+    .upload-label { 
+        min-height: 350px; border-radius: 16px; border: 2px dashed #D1D5DB; 
+        display: flex; flex-direction: column; align-items: center; justify-content: center; 
+        cursor: pointer; transition: all 0.2s ease; background: rgba(255,255,255,0.4); 
+        position: relative; overflow: hidden; width: 100%; text-align: center;
+    }
+    .upload-label:hover { border-color: var(--sage-green); background: white; }
+    .img-preview { width: 100%; height: 100%; object-fit: cover; position: absolute; top: 0; left: 0; z-index: 10; }
+    .file-input { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); border: 0; }
+
+    .garden-floor { position: relative; height: 140px; margin-top: 60px; background: linear-gradient(to bottom, transparent, #8fa88f); overflow: hidden; }
+    .grass-blade { position: absolute; bottom: 0; width: 6px; background: linear-gradient(to top, #6b8e6f, #7fa37f); border-radius: 5px; opacity: 0.6; }
+    .flower { position: absolute; bottom: 50px; font-size: 2rem; animation: sway 3s ease-in-out infinite; transform-origin: bottom; }
+    @keyframes sway { 0%, 100% { transform: rotate(-3deg); } 50% { transform: rotate(3deg); } }
+    
+    @keyframes slow-bounce { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-12px); } }
+    .animate-slow-bounce { animation: slow-bounce 4s ease-in-out infinite; }
+    
+    .butterfly { position: fixed; font-size: 2.5rem; z-index: 5; pointer-events: none; animation: flight 20s infinite ease-in-out; }
+    @keyframes flight { 0% { left: -5%; top: 20%; } 50% { left: 50%; top: 40%; } 100% { left: 105%; top: 20%; } }
+  </style>
+ </head>
+ <body class="h-full">
+
+  <div class="butterfly">🦋</div>
+
+  <nav>
+   <div class="max-w-7xl mx-auto px-8 py-5 flex items-center justify-between">
+    <div class="font-serif text-2xl font-bold cursor-pointer" onclick="goToPage('intro')">PM</div>
+    <div class="flex gap-8 text-sm font-semibold opacity-70">
+     <button onclick="goToPage('intro')" class="hover:text-green-800 transition">Introduction</button> 
+     <button onclick="goToPage('cstp')" class="hover:text-green-800 transition">CSTP Growth</button> 
+     <button onclick="goToPage('impact')" class="hover:text-green-800 transition">Student Impact</button>
+    </div>
+   </div>
+  </nav>
+
+  <main class="pt-28">
+    
+    <section id="page-intro" class="page active px-8 pb-20">
+        <div class="max-w-5xl mx-auto">
+            <div class="w-44 h-44 rounded-full bg-gray-200 mx-auto md:ml-0 mb-10 overflow-hidden border-4 border-white shadow-xl relative animate-slow-bounce">
+                <label for="file-profile" class="w-full h-full flex items-center justify-center cursor-pointer" id="disp-profile">
+                    <i data-lucide="user" class="w-16 h-16 opacity-30"></i>
+                </label>
+                <input type="file" id="file-profile" class="file-input" accept="image/*" onchange="upImg(this, 'disp-profile', 'key_profile')">
+            </div>
+
+            <span class="text-[10px] font-bold tracking-[0.2em] uppercase text-green-700 opacity-60 mb-2 block text-center md:text-left">Induction Portfolio</span>
+            <h1 class="font-serif text-5xl md:text-7xl leading-tight mb-10 text-center md:text-left">Growing With Purpose: <br>My Induction Journey 🦋</h1>
+
+            <div class="flex flex-wrap gap-3 mb-16 justify-center md:justify-start">
+                <div class="pill"><i data-lucide="user" class="w-4 h-4"></i>Pattricia Miranda</div>
+                <div class="pill"><i data-lucide="graduation-cap" class="w-4 h-4"></i>6th Grade</div>
+                <div class="pill"><i data-lucide="book-open" class="w-4 h-4"></i>Multi-Subject (ELA Rotation)</div>
+            </div>
+
+            <div class="content-card p-10 md:p-16 mb-10">
+                <span class="text-[10px] font-bold tracking-[0.2em] uppercase opacity-40">About Me</span>
+                <h2 class="font-serif text-4xl mt-2 mb-8">My Journey as an Educator</h2>
+                <div class="space-y-6 text-lg leading-relaxed opacity-90 text-justify">
+                    <p>My name is Pattricia Miranda, and I am a 6th-grade teacher at Kingston Elementary in Hesperia Unified School District. This is my first year serving in a teacher position, but my seventh year with Hesperia Unified. Throughout my journey, I have been blessed to work with students from preschool all the way through 6th grade, with some valuable experience in middle school as well.</p>
+                    <p>Each step has helped shape me into the educator I am today. I began in preschool, supported students through Tier 2 and Tier 3 intervention, worked with TK/Kinder students, completed student teaching in 3rd grade, and now have the privilege of teaching 6th grade. Every experience has taught me something meaningful about patience, flexibility, relationships, and meeting students where they are.</p>
+                    <p>Outside of the classroom, I am a wife, mom, mother-in-law, and grandmother. I have been blessed to be married for almost 21 years, and my family continues to be one of my greatest sources of motivation. I also continue to grow professionally by furthering my education in college.</p>
+                    <p>I am incredibly grateful to be teaching at Kingston Elementary with an amazing team. I truly could not have asked for a better school community to begin this chapter of my teaching career.</p>
+                </div>
+            </div>
+
+            <div class="content-card p-10 md:p-16 border-l-4 border-[#6B8E6F] mb-10">
+                <h2 class="font-serif text-4xl mb-6">Why I Teach</h2>
+                <p class="text-lg leading-relaxed opacity-90 text-justify">
+                    I teach because I believe every student deserves to feel seen, supported, and capable of success across all subjects. As a 6th grade teacher, I teach multiple content areas while leading an ELA-focused rotation where students develop strong reading and writing skills. My classroom focuses on scaffolding, student engagement, and supporting English learners through visuals, sentence frames, and structured discussions. My goal is to build confidence, critical thinking, and a love of learning in all students.
+                </p>
+            </div>
+
+            <h2 class="font-serif text-3xl mb-6">My Classroom Environment</h2>
+            <label class="upload-label" for="file-intro-env">
+                <div id="disp-intro-env" class="flex flex-col items-center opacity-30 text-center px-4">
+                    <i data-lucide="image" class="w-12 h-12 mb-2"></i>
+                    <p>Click to upload classroom photos</p>
+                </div>
+            </label>
+            <input type="file" id="file-intro-env" class="file-input" onchange="upImg(this, 'disp-intro-env', 'key_intro_env')">
+        </div>
+    </section>
+
+    <section id="page-cstp" class="page px-8 pb-20">
+        <div class="max-w-5xl mx-auto">
+            <span class="text-[10px] font-bold tracking-[0.2em] uppercase opacity-40 block mb-2">Professional Development</span>
+            <h1 class="font-serif text-5xl mb-12">CSTP Growth 🌿 Development</h1>
+
+            <div class="bg-[#DCE4DA] p-10 rounded-2xl mb-10">
+                <p class="text-[10px] font-bold tracking-widest uppercase opacity-50 mb-6">Overall CSTP Progress</p>
+                <div class="flex flex-col md:flex-row items-center gap-8 mb-10">
+                    <div><span class="text-5xl font-serif font-bold">3.65</span><p class="text-xs font-bold uppercase opacity-60">Initial Score</p></div>
+                    <i data-lucide="arrow-right" class="w-8 h-8 opacity-20 hidden md:block"></i>
+                    <div><span class="text-5xl font-serif font-bold">3.71</span><p class="text-xs font-bold uppercase opacity-60">Final Score</p></div>
+                </div>
+                <div class="grid md:grid-cols-2 gap-4 border-t border-black/5 pt-8 text-sm font-medium opacity-80">
+                    <div class="flex items-center gap-3"><i data-lucide="check-circle" class="w-4 h-4 text-green-700"></i> Growth in student engagement and instructional strategies</div>
+                    <div class="flex items-center gap-3"><i data-lucide="check-circle" class="w-4 h-4 text-green-700"></i> Improved scaffolding and support for English learners</div>
+                    <div class="flex items-center gap-3"><i data-lucide="check-circle" class="w-4 h-4 text-green-700"></i> Increased use of assessment and reflection</div>
+                    <div class="flex items-center gap-3"><i data-lucide="check-circle" class="w-4 h-4 text-green-700"></i> Continued professional growth</div>
+                </div>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-6 mb-12">
+                <div class="content-card p-8 bg-[#F5E6E8] border-l-4 border-pink-300">
+                    <h3 class="font-serif text-xl mb-4">Areas of Strength</h3>
+                    <ul class="text-sm space-y-2 opacity-80">
+                        <li>• Building student engagement through structured routines</li>
+                        <li>• Scaffolding instruction for diverse learners</li>
+                        <li>• Creating a supportive classroom environment</li>
+                    </ul>
+                </div>
+                <div class="content-card p-8 bg-[#E5D9F0] border-l-4 border-purple-300">
+                    <h3 class="font-serif text-xl mb-4">Areas for Growth</h3>
+                    <ul class="text-sm space-y-2 opacity-80">
+                        <li>• Differentiating assessments for varied learner levels</li>
+                        <li>• Integrating technology for interactive lessons</li>
+                        <li>• Deepening data-driven instructional decisions</li>
+                    </ul>
+                </div>
+                <div class="content-card p-8 bg-[#E8DCC4] border-l-4 border-yellow-500">
+                    <h3 class="font-serif text-xl mb-4">Most Proud Of</h3>
+                    <ul class="text-sm space-y-2 opacity-80">
+                        <li>• Supporting English learners to find their voice</li>
+                        <li>• Creating a classroom culture of respect and growth</li>
+                        <li>• Seeing students believe in their own abilities</li>
+                    </ul>
+                </div>
+            </div>
+
+            <h2 class="font-serif text-3xl mb-6">CSTP Growth Chart</h2>
+            <label class="upload-label" for="file-chart">
+                <div id="disp-chart" class="flex flex-col items-center opacity-30 text-center px-4">
+                    <i data-lucide="bar-chart-3" class="w-16 h-16 mb-4"></i>
+                    <p>Click to upload your CSTP Growth Chart</p>
+                </div>
+            </label>
+            <input type="file" id="file-chart" class="file-input" onchange="upImg(this, 'disp-chart', 'key_chart')">
+        </div>
+    </section>
+
+    <section id="page-impact" class="page px-8 pb-20">
+        <div class="max-w-5xl mx-auto">
+            <span class="text-[10px] font-bold tracking-[0.2em] uppercase opacity-40 block mb-2">Evidence of Practice</span>
+            <h1 class="font-serif text-5xl mb-12 text-center md:text-left">Impact on Student Success 🍃</h1>
+            
+            <div class="content-card p-10 md:p-16 border-l-4 border-teal-500 mb-10">
+                <h2 class="font-serif text-4xl mb-8">Student Success Story</h2>
+                <div class="space-y-6 text-lg leading-relaxed opacity-90 text-justify mb-10">
+                    <p>One student who represents the impact of my growth as an educator is Carlos, one of my English Language Learners. At the beginning of the year, Carlos struggled to adjust to the many changes that came with being in 6th grade. He rarely participated in class discussions, often did not complete assignments, and had a difficult time expressing his ideas in writing.</p>
+                    <p>Through consistent support, relationship-building, visuals, sentence frames, modeling, and encouragement, Carlos began to take academic risks. Over time, he became more willing to participate, ask questions, and share his thinking with others. His confidence grew little by little, and that growth began to show in his work.</p>
+                    <p>One of Carlos's biggest accomplishments was learning how to write a complete essay. What once felt overwhelming for him became something he could successfully complete with structure and practice. He now turns in assignments, participates with confidence, and demonstrates stronger writing skills.</p>
+                    <p>Carlos has grown both academically and socially. His progress reminds me why intentional support, patience, and believing in students matters. His success is a powerful example of how students can thrive when they feel supported, valued, and capable.</p>
+                </div>
+                <div class="bg-[#F9F8F3] p-8 mt-10 rounded-xl border-l-4 border-[#C9A85F]">
+                    <p class="text-xl italic opacity-80">"The sentence starters helped me to write better. I feel better about writing now. I never had sentence starters before."</p>
+                    <p class="text-sm font-bold mt-4 opacity-50 text-right">— Carlos M., 6th Grade Student</p>
+                </div>
+            </div>
+
+            <h2 class="font-serif text-3xl mb-6">Meet Carlos</h2>
+            <label class="upload-label mb-10" for="file-carlos">
+                <div id="disp-carlos" class="flex flex-col items-center opacity-30">
+                    <i data-lucide="user" class="w-12 h-12 mb-2"></i>
+                    <p>Click to upload photo of Carlos</p>
+                </div>
+            </label>
+            <input type="file" id="file-carlos" class="file-input" onchange="upImg(this, 'disp-carlos', 'key_carlos')">
+
+            <h2 class="font-serif text-3xl mb-6">Student Work</h2>
+            <label class="upload-label mb-10" for="file-work">
+                <div id="disp-work" class="flex flex-col items-center opacity-30 text-center px-4">
+                    <i data-lucide="file-text" class="w-12 h-12 mb-2"></i>
+                    <p>Click to upload student work samples</p>
+                </div>
+            </label>
+            <input type="file" id="file-work" class="file-input" onchange="upImg(this, 'disp-work', 'key_work')">
+
+            <h2 class="font-serif text-3xl mb-6">Classroom Learning Environment</h2>
+            <label class="upload-label mb-16" for="file-env">
+                <div id="disp-env" class="flex flex-col items-center opacity-30 text-center px-4">
+                    <i data-lucide="image" class="w-12 h-12 mb-2"></i>
+                    <p>Click to upload photos of learning environment</p>
+                </div>
+            </label>
+            <input type="file" id="file-env" class="file-input" onchange="upImg(this, 'disp-env', 'key_env')">
+
+            <div class="bg-[#E5D9F0]/30 p-10 md:p-16 rounded-xl border-l-4 border-[#E5D9F0] mb-20">
+                <h3 class="font-serif text-2xl mb-4 text-[#7A6A8F]">Instructional Coach Recognition</h3>
+                <p class="italic opacity-70 leading-relaxed text-justify">"Mrs. Miranda is an exceptionally hard working educator who consistently goes above and beyond to ensure every student is meaningfully impacted by her instruction. Throughout this school year, she has demonstrated a remarkable commitment to professional growth, accepting all feedback with an open mind and a drive for excellence. Her dedication has left a lasting, positive mark on her students' academic journeys."</p>
+                <p class="text-xs font-bold mt-4 opacity-40">— Mrs. Maldonado, Instructional Coach</p>
+            </div>
+        </div>
+    </section>
+
+  </main>
+
+  <div class="garden-floor" id="garden"></div>
+  <footer class="py-10 text-center text-xs opacity-40">
+      <p>© 2026 Pattricia Miranda • Teacher Induction Portfolio</p>
+      <button onclick="localStorage.clear(); location.reload();" class="mt-4 underline text-red-800">Clear All Photos & Reset Storage</button>
+  </footer>
+
+  <script>
+    function goToPage(id) {
+        document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+        const target = document.getElementById('page-' + id);
+        if (target) { target.classList.add('active'); window.scrollTo({ top: 0, behavior: 'smooth' }); }
+    }
+
+    // Photo logic with built-in compression to ensure they fit in browser storage
+    function upImg(input, displayId, key) {
+        const file = input.files[0];
+        if (file) {
+            const reader = new FileReader();
+            reader.onload = (e) => {
+                const img = new Image();
+                img.onload = () => {
+                    const canvas = document.createElement('canvas');
+                    const MAX_WIDTH = 800; // Shrink to 800px wide for storage safety
+                    let width = img.width;
+                    let height = img.height;
+                    if (width > MAX_WIDTH) { height *= MAX_WIDTH / width; width = MAX_WIDTH; }
+                    canvas.width = width; canvas.height = height;
+                    const ctx = canvas.getContext('2d');
+                    ctx.drawImage(img, 0, 0, width, height);
+                    const compressedData = canvas.toDataURL('image/jpeg', 0.7); 
+                    try {
+                        localStorage.setItem(key, compressedData);
+                        document.getElementById(displayId).innerHTML = `<img src="${compressedData}" class="img-preview">`;
+                    } catch (err) {
+                        alert("Storage limit reached. Please clear your current photos using the button at the bottom.");
+                    }
+                };
+                img.src = e.target.result;
+            };
+            reader.readAsDataURL(file);
+        }
+    }
+
+    window.onload = function() {
+        const config = [{k:'key_profile', d:'disp-profile'}, {k:'key_intro_env', d:'disp-intro-env'}, {k:'key_chart', d:'disp-chart'}, {k:'key_carlos', d:'disp-carlos'}, {k:'key_work', d:'disp-work'}, {k:'key_env', d:'disp-env'}];
+        config.forEach(item => {
+            const data = localStorage.getItem(item.k);
+            if (data) document.getElementById(item.d).innerHTML = `<img src="${data}" class="img-preview">`;
+        });
+
+        const garden = document.getElementById('garden');
+        const emoj = ['🌸','🌻','🌺','🌷','🌼'];
+        for(let i=0; i<15; i++) {
+            const f = document.createElement('div'); f.className = 'flower'; f.style.left = (i * 7) + '%';
+            f.innerHTML = emoj[i % emoj.length]; garden.appendChild(f);
+        }
+        for(let i=0; i<100; i++) {
+            const b = document.createElement('div'); b.className = 'grass-blade'; b.style.left = (Math.random()*100)+'%';
+            b.style.height = (25 + Math.random()*50)+'px'; garden.appendChild(b);
+        }
+        lucide.createIcons();
+    };
+  </script>
+ </body>
+</html>
